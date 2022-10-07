@@ -1,14 +1,14 @@
 import express, { Application, Request, Response } from "express";
-import dotenv from "dotenv";
+import configObj from "./config";
 
-const port: string | number = process.env.PORT || 3000;
+const port: string | number | undefined = configObj.port;
 const app: Application = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.post("/", (req: Request, res: Response) => {
-    console.log(req);
+    console.log("BODY", req.body);
 
     res.json({
         "ok": true
